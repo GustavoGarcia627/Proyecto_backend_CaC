@@ -28,6 +28,50 @@ class Clientela:
         self.conn.commit()
         return self.cursor.lastrowid
 
-prueba = Clientela(host="localhost",user="root",password="",database="basededatos")
+    def consultar_cliente(self,codigo):
+        #PreCondicion: Recibe un codigo de algúnn cliente
+        #PostCondicion: Devuelve el cliente si existe o False si no existe
+        self.cursor.execute(f"SELECT * FROM clientes WHERE Codigo = {codigo}")
+        return self.cursor.fetchone()
+    
+    def modificar_cliente(self,codigo,nuevo_nombre,nuevo_apellidio,nuevo_email,nuevo_contraseña,nuevo_cumpleaños,nuevo_pais,nuevo_términos):
+        #PreCondicion: Recibe un codigo de cliente junto a nuevos parametros a cambiar sobre este
+        #PosCondicion: Devuelve el cliente modificiado sobre la base de datos
+        sql = "UPDATE clientes SET nombre = %s, apellido = %s, email = %s, contraseña = %s, cumple = %s, pais = %s, términos = %s WHERE Codigo = %s"
+        valores = (nuevo_nombre,nuevo_apellidio,nuevo_email,nuevo_contraseña,nuevo_cumpleaños,nuevo_pais,nuevo_términos)
+        self.cursor.execute(sql,valores)
+        self.conn.commit()
+        return self.cursor.rowcount > 0
 
-prueba.agregar_cliente('Jonathan','Perez','perez@perez','1234','1998-12-05','Colombia',True)
+    def mostrar_cliente(self,codigo):
+        #PreCondicion: Recibe un cliente por su Codigo
+        #PostCondicion: Devuelve el cliente si existe o "Cliente no encontrado" si no existe
+        cliente = self.consultar_cliente(codigo)
+        if cliente:
+            print('-'*50)
+            print(f'Codigo....: {cliente["Codigo"]}')
+            print(f'Nombre....: {cliente["Nombre"]}')
+            print(f'Apellido..: {cliente["Apellido"]}')
+            print(f'Email.....: {cliente["Email"]}')
+            print(f'Contraseña: {cliente["Contraseña"]}')
+            print(f'Cumple....: {cliente["Cumple"]}')
+            print(f'Pais......: {cliente["Pais"]}')
+            print(f'Terminos..: {cliente["Términos"]}')
+            print('-'*50)
+        else:
+            print('Cliente no encontrado')
+
+    def listar_cliente(self):
+        #PreCondicion: No recibe argumentos
+        #PostCondicion: Al llamarse muestra todos los clientes registrados en la base de datos
+        self.cursor.execute("SELECT * FROM clientes")
+        clientes = self.cursor.fetchall()
+        return clientes
+    
+    def eliminar_cliente(self,codigo):
+        #PreCondicion: Recibe un cliente por su Codigo
+        #PostCondicion: Elimina el cliente si existe y devuelvo True, o False si no existe
+        self.cursor.execute(f"DELETE FROM clientes WHERE Codigo = {codigo}")
+        self.conn.commit()
+        return self.cursor.rowcount > 0
+    
