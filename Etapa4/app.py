@@ -77,7 +77,7 @@ class Mascotas:
         self.cursor.execute("SELECT * FROM cachorros")
         return self.cursor.fetchall()
 
-    def borrar_cachorro(self,codigo):
+    def eliminar_cachorro(self,codigo):
         sql = "DELETE FROM cachorros WHERE Codigo = %s"
         self.cursor.execute(sql,(codigo,))
         self.conn.commit()
@@ -90,14 +90,14 @@ class Mascotas:
 mascotas = Mascotas('localhost','root','','basededatos')
 
 #Carpeta para guardar las imagenes
-ruta_destino = 'static/img/'
+ruta_destino = 'D:\ProyectoFinalBackEnd\Etapa4\static\imagenes'
 
-@app.route("/cachorros", methods=["GET"])
+@app.route("/cachorros", methods=["GET"])#passed
 def listar_cachorros():
-    cachorros = mascotas.traer_cachorros()
+    cachorros = mascotas.listar_cachorros()
     return jsonify(cachorros)
 
-@app.route("/cachorros/<int:codigo>", methods=["GET"])
+@app.route("/cachorros/<int:codigo>", methods=["GET"])#passed
 def mostrar_cachorro(codigo):
     cachorros = mascotas.consultar_cachorro(codigo)
     if cachorros:
@@ -105,17 +105,17 @@ def mostrar_cachorro(codigo):
     else:
         return 'Cachorro no encontrado', 404
     
-@app.route("/cachorros", methods=["POST"])
+@app.route("/cachorros", methods=["POST"])#Passed
 def agregar_cachorro():
     #Recojo los datos del forumlario
-    nombre = request.form.get("nombre")
-    genero = request.form.get("genero")
-    edad = request.form.get("edad")
-    imagen = request.files.get("imagen")
+    nombre = request.form["Nombre"]
+    genero = request.form["Genero"]
+    edad = request.form["Edad"]
+    imagen = request.files["imagen_url"]
     nombre_imagen = ""
 
     #Genero el nombre de la imagen
-    nombre_imagen = secure_filename(imagen.filename) #Transforma el nombre de la imagen en uno seguro
+    nombre_imagen = secure_filename(imagen.filename)  #Transforma el nombre de la imagen en uno seguro
     nombre_base,extension = os.path.splitext(nombre_imagen) #Separamos el nombre de la imagen y la extensión
     nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}" #Generamos el nombre de la imagen
 
@@ -126,12 +126,12 @@ def agregar_cachorro():
     else:
         return jsonify({"mensaje" : "Error al agregar el cachorro"}),500
     
-@app.route("/cachorros/<int:codigo>", methods=["PUT"])
+@app.route("/cachorros/<int:codigo>", methods=["PUT"]) #passed  
 def modificar_cachorro(codigo):
     #Se recuperan los nuevos datos del formulario
-    nuevo_nombre = request.form.get("nombre")
-    nuevo_genero = request.form.get("genero")
-    nueva_edad = request.form.get("edad")
+    nuevo_nombre = request.form.get("Nombre")
+    nuevo_genero = request.form.get("Genero")
+    nueva_edad = request.form.get("Edad")
 
     #Verificar si se mando una nueva imagen
     if 'imagen' in request.files:
@@ -185,4 +185,6 @@ def eliminar_cachorro(codigo):
             return jsonify({"mensaje" : "Error al eliminar el cachorro"}),500
     else:
         return jsonify({"mensaje" : "Cachorro no encontrado"}),404
-
+    
+if __name__ == "__main__":
+    app.run(debug=True)
