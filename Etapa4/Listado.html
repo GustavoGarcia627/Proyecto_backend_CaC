@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narices Frias</title>
+    <link rel="stylesheet" href="./Estilos/Root.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--Fuente para titulo-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://kit.fontawesome.com/7eb605e564.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="media/favicon/dogPaw.ico" type="image/x-icon" >
+</head>
+<body>
+    <!--Header-->
+    <header>
+            <img class="emblema"  src="./Media/logos/4.png" alt="logo">
+            <h1 class="titulo">Narices Frías (Empleados)</h1>
+
+    </header>
+
+    <div class="topnav">
+        <a href="./Listado.html">Listado</a>
+        <a href="./Agregar.html">Agregar</a>
+        <a href="./Modificar.html">Modificar</a>
+        <a href="./ELiminar.html">Eliminar</a>
+    </div>
+
+<!--body-->
+    <div class="cuerpo">
+        <div class="bloque bloque1">
+            <h1 class="subtitulo sb1">Estos son los cachorritos que tenemos disponibles para su adopción:</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Genero</th>
+                        <th>Edad</th>
+                        <th>Imagen</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaCachorros"></tbody>
+            </table>
+        </div>
+    </div>
+
+<!--footer-->
+<footer id="footerDiv">
+    <div class="tituloFooter">
+        <div class="line"></div><h3>Narices Frias</h3><div class="line"></div>
+    </div>
+    <ul>
+        <li> <a href="#"><i class="fa-brands fa-facebook fa-xl" style="color: #ffe6e6;" >&nbsp;</i></a> </li>
+        <li> <a href="#"><i class="fa-brands fa-x-twitter fa-xl" style="color: #fae6e6;">&nbsp;</i></a> </li>
+        <li> <a href="#"><i class="fa-brands fa-instagram fa-xl" style="color: #fae6e6;">&nbsp;</i></a> </li>
+        <li> <a href="#"><i class="fa-brands fa-pinterest-p fa-xl" style="color: #fae6e6;">&nbsp;</i></a></li>
+    </ul>
+    <p>Copyright 2.024 © <b>Narices Frias</b> Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>
+
+<script>
+    const URL = "http://127.0.0.1:5000/"
+
+    // Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
+    //const URL = "https://USUARIO.pythonanywhere.com/"
+    
+
+    // Realizamos la solicitud GET al servidor para obtener todos los productos.
+    fetch(URL + 'cachorros')
+        .then(function (response) {
+            if (response.ok) {
+                //Si la respuesta es exitosa (response.ok), convierte el cuerpo de la respuesta de formato JSON a un objeto JavaScript y pasa estos datos a la siguiente promesa then.
+                return response.json(); 
+        } else {
+                // Si hubo un error, lanzar explícitamente una excepción para ser "catcheada" más adelante
+                throw new Error('Error al obtener los cachorros.');
+            }
+        })
+
+        //Esta función maneja los datos convertidos del JSON.
+        .then(function (data) {
+            let tablaProductos = document.getElementById('tablaCachorros'); //Selecciona el elemento del DOM donde se mostrarán los productos.
+
+            // Iteramos sobre cada producto y agregamos filas a la tabla
+            for (let cachorro of data) {
+                let fila = document.createElement('tr'); //Crea una nueva fila de tabla (<tr>) para cada producto.
+                fila.innerHTML = '<td>' + cachorro.Codigo + '</td>' +
+                    '<td>' + cachorro.Nombre + '</td>' +
+                    '<td align="right">' + cachorro.Genero + '</td>' +
+                    '<td align="right">' + cachorro.Edad + '</td>' +
+                    
+                    // Mostrar miniatura de la imagen (verificar que funciona)
+                    '<td><img src=./static/imagenes/' + cachorro.imagen_url +' alt="Imagen del producto" style="width: 100px;"></td>' ;
+                    
+                    //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
+                    //'<td><img src=https://www.pythonanywhere.com/user/USUARIO/files/home/USUARIO/mysite/static/imagenes/' + producto.imagen_url +' alt="Imagen del producto" style="width: 100px;"></td>' + '<td align="right">' + producto.proveedor + '</td>';
+                
+                //Una vez que se crea la fila con el contenido del producto, se agrega a la tabla utilizando el método appendChild del elemento tablaProductos.
+                tablaProductos.appendChild(fila);
+            }
+        })
+
+        //Captura y maneja errores, mostrando una alerta en caso de error al obtener los productos.
+        .catch(function (error) {
+            // Código para manejar errores
+            alert('Error al obtener los productos.');
+        });
+</script>
