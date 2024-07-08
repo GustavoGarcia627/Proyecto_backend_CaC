@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narices Frias</title>
+    <link rel="stylesheet" href="./Estilos/Root.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--Fuente para titulo-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://kit.fontawesome.com/7eb605e564.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="media/favicon/dogPaw.ico" type="image/x-icon" >
+</head>
+<body>
+    <!--Header-->
+    <header>
+            <img class="emblema"  src="./Media/logos/4.png" alt="logo">
+            <h1 class="titulo">Narices Frías (Empleados)</h1>
+
+    </header>
+
+    <div class="topnav">
+        <a href="./Listado.html">Listado</a>
+        <a href="./Agregar.html">Agregar</a>
+        <a href="./Modificar.html">Modificar</a>
+        <a href="./Eliminar.html">Eliminar</a>
+    </div>
+
+
+<!--body-->
+    <form id="formulario" enctype="multipart/form-data">
+
+        <label for="nombre"> nombre: </label>
+            <input type="text" id="nombre" name="Nombre" required><br>
+
+        <label for="genero"> Genero: </label>
+            <input type="radio"  name="Genero" value="Macho">
+            <label for="Macho">Macho</label>
+            <input type="radio" name="Genero" value="Hembra">
+            <label for="Hembra">Hembra</label><br>
+
+        <label for="edad"> Edad: </label>
+            <input type="radio"  name="Edad" value="Cachorro">
+            <label for="perro">Cachorro</label>
+            <input type="radio" name="Edad" value="Adulto">
+            <label for="gato">Adulto</label><br>
+
+        <label for="imagenProducto">Imagen del cachorro:</label>
+            <input type="file" id="imagenProducto" name="imagen_url"><br>
+
+            <button type="submit">Agregar Cachorro</button>
+
+    </form>
+    </body>
+
+    <!--footer-->
+    <footer id="footerDiv">
+        <div class="tituloFooter">
+            <div class="line"></div><h3>Narices Frias</h3><div class="line"></div>
+        </div>
+        <ul>
+            <li> <a href="#"><i class="fa-brands fa-facebook fa-xl" style="color: #ffe6e6;" >&nbsp;</i></a> </li>
+            <li> <a href="#"><i class="fa-brands fa-x-twitter fa-xl" style="color: #fae6e6;">&nbsp;</i></a> </li>
+            <li> <a href="#"><i class="fa-brands fa-instagram fa-xl" style="color: #fae6e6;">&nbsp;</i></a> </li>
+            <li> <a href="#"><i class="fa-brands fa-pinterest-p fa-xl" style="color: #fae6e6;">&nbsp;</i></a></li>
+        </ul>
+        <p>Copyright 2.024 © <b>Narices Frias</b> Todos los derechos reservados.</p>
+    </footer>
+
+</html>
+
+<script>
+
+    const URL = "http://127.0.0.1:5000/"
+
+    //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
+    //const URL = "https://USUARIO.pythonanywhere.com/"
+
+
+    // Capturamos el evento de envío del formulario
+    document.getElementById('formulario').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evitamos que se envie el form 
+
+        var formData = new FormData(this);
+
+        // Realizamos la solicitud POST al servidor
+        fetch(URL + 'cachorros', { // fetcheamos a la URL http://http://127.0.0.1:5000/productos con el método POST (usamos la variable URL definida antes para poder colocar despues solo el nombre del decorador de la ruta en el servidor, en este caso productos)
+            method: 'POST',
+            body: formData // Aquí enviamos formData. Dado que formData puede contener archivos, no se utiliza JSON.
+        })
+
+            //Después de realizar la solicitud POST, se utiliza el método then() para manejar la respuesta del servidor.
+            .then(function (response) {
+                if (response.ok) {
+                    //Si la respuesta es exitosa, convierte los datos de la respuesta a formato JSON.
+                    return response.json();
+                } else {
+                    // Si hubo un error, lanzar explícitamente una excepción
+                    // para ser "catcheada" más adelante
+                    throw new Error('Error al agregar el cachorro.');
+                }
+            })
+
+            //Respuesta OK, muestra una alerta informando que el producto se agregó correctamente y limpia los campos del formulario para que puedan ser utilizados para un nuevo producto.
+            .then(function (data) {
+                alert('Cachorro agregado correctamente.');
+            })
+
+            // En caso de error, mostramos una alerta con un mensaje de error.
+            .catch(function (error) {
+                alert('Error al agregar el cachorro.');
+            })
+
+            // Limpiar el formulario en ambos casos (éxito o error)
+            .finally(function () {
+                document.getElementById('nombre').value = "";
+                document.getElementById('genero').value = "";
+                document.getElementById('edad').value = "";
+                document.getElementById('imagenProducto').value = "";
+            });
+    })
+</script>

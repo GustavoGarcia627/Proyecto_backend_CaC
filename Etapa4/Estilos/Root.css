@@ -1,0 +1,56 @@
+@import url(Aprendiendo.css);
+@import url(nav.css);
+@import url(colores.css);
+@import url(cuerpo.css);
+@import url(adoptame_page.css);
+@import url(donacionesPage.css);
+
+/*BreakPoints de la pagina*/
+@media screen and (max-width:1280px) {
+  .cuerpo .perritos{
+    display: grid;
+    grid-template-columns: 100%;
+
+}
+
+}
+@media screen and (max-width:702px) {
+    header{
+        flex-direction: column;
+    }
+
+    .topnav{
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .cuerpo .bloque2{
+      flex-direction: column;
+    }
+    div .perritos .cachorro{
+      flex-direction: column;
+    }
+    .cuerpo .perritos{
+      display: grid;
+      grid-template-columns: 100%;
+  
+  }
+  .slideBarInn img{
+    height: 400px;
+  }
+
+  }
+
+  @media screen and (max-width:400px){
+    .slideBarInn img{
+      height: 200px;
+    }
+  }
+
+/*Fuente para el titulo*/
+.sacramento-regular {
+    font-family: "Sacramento", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  

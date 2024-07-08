@@ -1,0 +1,70 @@
+.cuerpoDonaciones{
+    padding: 20px;
+}
+
+.cuerpoDonaciones .texto{
+    text-align: center;
+}
+/*Diseño de remeras*/
+.merch{
+    /*border-style: solid;
+    border-width: 10px;*/
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+    margin: 40px 0 120px 0;
+ 
+}
+
+.cuerpo .merch .remera img{
+    width: 300px;
+}
+
+.cuerpo .merch .remera img:hover{
+    animation: pulse;
+    animation-duration: 1s; 
+}
+
+.cuerpo .merch .remera {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: var(--color-3);
+    border-radius: 10%
+}
+
+.cuerpo .merch .remera a{
+    text-align: center;
+}
+
+/*Diseño de formas de pago*/
+.cuerpoDonaciones .formasDePago li{
+    display: flex;
+    align-items: center;
+}
+
+.cuerpoDonaciones .formasDePago img{
+    width: 100px;
+}
+
+.cuerpoDonaciones .subtitulo{
+    margin-top: 50px;
+}
+
+.cuerpoDonaciones .formasDePago{
+   /* border-style: solid;
+    border-width: 10px;*/
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 20px;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+}
