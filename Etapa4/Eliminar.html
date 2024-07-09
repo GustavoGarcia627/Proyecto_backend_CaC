@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narices Frias</title>
+    <link rel="stylesheet" href="./Estilos/Root.css">
+    <link rel="stylesheet" href="./Estilos/form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--Fuente para titulo-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://kit.fontawesome.com/7eb605e564.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="media/favicon/dogPaw.ico" type="image/x-icon" >
+</head>
+<body>
+
+    <!--Header-->
+    <header>
+            <img class="emblema"  src="./Media/logos/4.png" alt="logo">
+            <h1 class="titulo">Narices Frías (Empleados)</h1>
+
+    </header>
+
+    <div class="topnav">
+        <a href="./Listado.html">Listado</a>
+        <a href="./Agregar.html">Agregar</a>
+        <a href="./Modificar.html">Modificar</a>
+        <a href="./Eliminar.html">Eliminar</a>
+    </div>
+
+
+<!--body-->
+<div class="cuerpo cuerpoDonaciones">
+    <h1 class="subtitulo">Eliminar cachorros del refugio</h1>
+    <table id="cachorros-table"> <!-- Se crea una tabla para mostrar los productos. -->
+        <thead> <!--Encabezado de la tabla con columnas para código, descripción, cantidad, precio y acciones.-->
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Genero</th>
+                <th>¿Adoptado?</th>
+            </tr>
+        </thead>
+        <tbody id="tablaCachorros"></tbody>
+    </table><br>
+
+</div>
+
+    <!--footer-->
+    <footer id="footerDiv">
+        <div class="tituloFooter">
+            <div class="line"></div><h3>Narices Frias</h3><div class="line"></div>
+        </div>
+        <ul>
+            <li> <a href="#"><i class="fa-brands fa-facebook fa-xl" style="color: #ffe6e6;" >&nbsp;</i></a> </li>
+            <li> <a href="#"><i class="fa-brands fa-x-twitter fa-xl" style="color: #fae6e6;">&nbsp;</i></a> </li>
+            <li> <a href="#"><i class="fa-brands fa-instagram fa-xl" style="color: #fae6e6;">&nbsp;</i></a> </li>
+            <li> <a href="#"><i class="fa-brands fa-pinterest-p fa-xl" style="color: #fae6e6;">&nbsp;</i></a></li>
+        </ul>
+        <p>Copyright 2.024 © <b>Narices Frias</b> Todos los derechos reservados.</p>
+    </footer>
+
+
+    <script>
+        // const URL = "http://127.0.0.1:5000/"
+        const URL = "http://127.0.0.1:5000/"
+
+        
+        // Obtiene el contenido del inventario
+        function obtenerCachorros() {
+            fetch(URL + 'cachorros') // Realiza una solicitud GET al servidor y obtener la lista de productos.
+                .then(response => {
+                    // Si es exitosa (response.ok), convierte los datos de la respuesta de formato JSON a un objeto JavaScript.
+                    if (response.ok) { return response.json(); }
+                })
+                // Asigna los datos de los productos obtenidos a la propiedad productos del estado.
+                .then(data => {
+                    const productosTable = document.getElementById('cachorros-table').getElementsByTagName('tbody')[0];
+                    productosTable.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
+                    data.forEach(cachorro => {
+                        const row = productosTable.insertRow();
+                        row.innerHTML = `
+                            <td>${cachorro.Codigo}</td>
+                            <td>${cachorro.Nombre}</td>
+                            <td>${cachorro.Edad}</td>
+                            <td align="right">${cachorro.Genero}</td>
+                            <td><button onclick="eliminarCachorro('${cachorro.Codigo}')">Eliminar</button></td>
+                        `;
+                    });
+                })
+                // Captura y maneja errores, mostrando una alerta en caso de error al obtener los productos.
+                .catch(error => {
+                    console.log('Error:', error);
+                    alert('Error al obtener los cachorros.');
+                });
+        }
+
+        // Se utiliza para eliminar un producto.
+        function eliminarCachorro(codigo) {
+            // Se muestra un diálogo de confirmación. Si el usuario confirma, se realiza una solicitud DELETE al servidor a través de fetch(URL + 'productos/${codigo}', {method: 'DELETE' }).
+            if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+                fetch(URL + `cachorros/${codigo}`, { method: 'DELETE' })
+                    .then(response => {
+                        if (response.ok) {
+                            // Si es exitosa (response.ok), elimina el producto y da mensaje de ok.
+                            obtenerCachorros(); // Vuelve a obtener la lista de productos para actualizar la tabla.
+                            alert('Cachorro eliminado correctamente.');
+                        }
+                    })
+                    // En caso de error, mostramos una alerta con un mensaje de error.
+                    .catch(error => {
+                        alert(error.message);
+                    });
+            }
+        }
+
+        // Cuando la página se carga, llama a obtenerProductos para cargar la lista de productos.
+        document.addEventListener('DOMContentLoaded', obtenerCachorros);
+    </script>
+</body>
+</html>
