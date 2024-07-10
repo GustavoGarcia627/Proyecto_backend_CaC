@@ -54,3 +54,34 @@
     font-style: normal;
   }
   
+/* Estilo general de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  color: #333;
+}
+
+/* Encabezado de la tabla */
+th {
+  background-color: var(--color-1);
+  color: var(--color-4);
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Estilo de las celdas */
+td {
+  padding: 10px;
+  border: 0px solid white;
+  border-radius: 20%;
+  align-items: center;
+}
+
+/* Estilo de filas alternas (opcional) */
+tr:nth-child(even) {
+  background-color: var(--color-3);
+}
+

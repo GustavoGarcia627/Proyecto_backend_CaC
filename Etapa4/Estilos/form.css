@@ -9,19 +9,22 @@ body {
   */
 
 /*DEFINIENDO EL AREA DEL FORMULARIO*/
-  form {
-  /*  background-color: white;*/
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 18px;
-  }
+form {
+  font-size: 25px;
+  max-width: 75%;
+  margin: 40px auto;
+  padding: 60px;
+  background-color: #FFE6E6;
+  border-radius: 5px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
 
   label {
     display: block;
     margin-bottom: 5px;
     color: black;
-    font-size: 18px;
+    
     padding-bottom: 5px;
   }
   
@@ -67,7 +70,7 @@ button {
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px
   }
   
   button:hover {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Narices Frias</title>
     <link rel="stylesheet" href="./Estilos/Root.css">
+    <link rel="stylesheet" href="./Estilos/form.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <!--Fuente para titulo-->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,29 +31,29 @@
 
 
 <!--body-->
+<div class="cuerpo">
     <form id="formulario" enctype="multipart/form-data">
 
-        <label for="nombre"> nombre: </label>
-            <input type="text" id="nombre" name="Nombre" required><br>
-
+        <label for="nombre"> Nombre: </label>
+            <input type="text" id="nombre" name="Nombre" required>
+        <br><br>
         <label for="genero"> Genero: </label>
-            <input type="radio"  name="Genero" value="Macho">
-            <label for="Macho">Macho</label>
-            <input type="radio" name="Genero" value="Hembra">
-            <label for="Hembra">Hembra</label><br>
-
-        <label for="edad"> Edad: </label>
-            <input type="radio"  name="Edad" value="Cachorro">
-            <label for="perro">Cachorro</label>
-            <input type="radio" name="Edad" value="Adulto">
-            <label for="gato">Adulto</label><br>
-
-        <label for="imagenProducto">Imagen del cachorro:</label>
-            <input type="file" id="imagenProducto" name="imagen_url"><br>
+            <input type="radio"  name="Genero" value="Macho">Macho
+            <input type="radio" name="Genero" value="Hembra">Hembra
+        <br><br>
+        <label for="Edad"> Edad: </label>
+            <input type="radio"  name="Edad" value="Cachorro">Cachorro
+            <input type="radio" name="Edad" value="Adulto">Adulto
+        <br><br>
+        <label for="imagenCachorro">Imagen del cachorro:</label>
+            <input type="file" id="imagenCachorro" name="imagen_url">
+        <br><br>
 
             <button type="submit">Agregar Cachorro</button>
 
     </form>
+
+</div>
     </body>
 
     <!--footer-->
@@ -118,7 +119,7 @@
                 document.getElementById('nombre').value = "";
                 document.getElementById('genero').value = "";
                 document.getElementById('edad').value = "";
-                document.getElementById('imagenProducto').value = "";
+                document.getElementById('imagenCachorro').value = "";
             });
     })
 </script>
