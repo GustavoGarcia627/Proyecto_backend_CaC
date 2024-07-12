@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narices Frias</title>
+    <link rel="stylesheet" href="./Estilos/Root.css">
+<!---    <link rel="stylesheet" href="./Estilos/form.css"> -->
+    <link rel="stylesheet" href="./Estilos/form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--Fuente para titulo-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7eb605e564.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="media/favicon/dogPaw.ico" type="image/x-icon" >
+</head>
+<body>
+    <!--Header-->
+    <header>
+            <img class="emblema"  src="./Media/logos/4.png" alt="logo">
+            <h1 class="titulo">Narices Frías</h1>
+
+    </header>
+
+    <div class="topnav">
+      <a href="./Aprendiendo.html">Inicio </a>
+      <a href="./adoptame.html">Adoptame</a>
+      <a href="./Contactanos.html">Contactanos</a>
+      <a href="./donaciones.html">Donaciones</a>
+      <a href="./administracion.html">Administracion</a>
+    </div>
+
+   <!--body-->
+   <div class="cuerpo">
+    <div class="bloque bloque1">
+        <h1 class="subtitulo sb1">Contactanos</h1>
+        <br><br>
+        <div class="texto"><p>  !Para contactarse con nosotros complete el siguiente formulario y con mucho gusto nos podremos en contacto con vos¡.<br></p>
+        </div>
+    </div>
+    <img class="waveUp" src="./Media/detalles/waveUp.png" alt="waveUp">
+    <div class="bloque bloque2">
+        <div>
+            <h1 class="subtitulo sb2">Formulario de Contacto</h1>
+            <div>
+                <form id="formulario">
+                  <div>
+                   <label for="nombre">Nombre:</label>
+                   <input type="text" id="nombre" placeholder="Introduzca Nombre">
+                  </div>
+                  <div>
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" placeholder="Introduzca Apeliido">
+                  </div>
+                  <div>
+                    <label for="sexo">Sexo:</label>
+                    <input type="radio" name="sexo" id="sexoM" value="M"> Masculino
+                    <input type="radio" name="sexo"  id="sexoF" value="F"> Femenino
+                    <input type="radio" name="sexo"  id="sexoO" value="O"> Otro
+                  </div>
+                  <br><br>
+                  <div>
+                    <label for="telefono">Telefono:</label>
+                    <input type="text" id="telefono" placeholder="Introduzca un numero de Contacto">
+                  </div>
+                  <div>
+                    <label for="email" class="required">Correo Electrónico:</label>
+                    <input type="email" id="email" placeholder="correo@dominio.com">
+                  </div>
+                  <div>
+                    <label for="asunto" class="inline">Asunto:</label>
+                    <textarea id="asunto" rows="4" cols="50" placeholder="Inque la razon o asunto de contacto"></textarea>
+                  </div>
+                  <div>
+                    <label for="termino">Acepto todos los terminos</label>
+                    <input type="checkbox" name="termino" id="termino" value="false">
+                  </div>
+                  <br><br>
+                <button imput type="submit" id="submit">Enviar</button>
+                </form>
+              <script src="JS/frm.js"></script>
+              
+              </div>
+        </div>
+ <!---INSERTANDO MAPA DE GOOGLE - WH-->
+        <iframe 
+          id="inlineFrameGoogle"
+          title="inline Frame Google"
+          width="500" 
+          height="800"
+          style="border-style: hidden;"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105073.45340592659!2d-58.51569991275771!3d-34.615654767193945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires!5e0!3m2!1sen!2sar!4v1715300016431!5m2!1sen!2sar" alt="Mapa">
+        </iframe>
+        </div>
+        <img class="waveDown" src="./Media/detalles/waveDown.png" alt="waveDown">
+        <div class="bloque bloque3">
+ <!---Omitiendo esta seccion
+            <h1 class="subtitulo sb1">Subtitulo generico 3</h1>
+            <div class="texto"><p>Somos concientes que por la situación actual del pais, la situacion de los cachorritos no es la mejor para
+             ellos. Muchos se encuentran en lugares pasando frio, y sufriendo de "Narices frías".<br>
+            Por eso de nuestra asociacion</p>
+            </div>
+-->
+        </div>
+    </div>
+
+    <!--footer-->
+    <footer id="footerDiv">
+      <div class="tituloFooter">
+          <div class="line"></div><h3>Narices Frias</h3><div class="line"></div>
+      </div>
+      <ul>
+          <li> <a href="#"><i class="fa-brands fa-facebook fa-xl" style="color: #ffe6e6;" >&nbsp;</i></a> </li>
+          <li> <a href="#"><i class="fa-brands fa-x-twitter fa-xl" style="color: #fae6e6;">&nbsp;</i></a> </li>
+          <li> <a href="#"><i class="fa-brands fa-instagram fa-xl" style="color: #fae6e6;">&nbsp;</i></a> </li>
+          <li> <a href="#"><i class="fa-brands fa-pinterest-p fa-xl" style="color: #fae6e6;">&nbsp;</i></a></li>
+      </ul>
+      <p>Copyright 2.024 © <b>Narices Frias</b> Todos los derechos reservados.</p>
+  </footer>
+
+  </body>
+  </html>

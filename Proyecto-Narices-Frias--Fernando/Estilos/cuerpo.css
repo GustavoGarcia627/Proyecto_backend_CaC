@@ -1,0 +1,72 @@
+/*Edición de los bloques en general*/
+.cuerpo{
+    background-color:var(--color-4);
+
+}
+
+.cuerpo .subtitulo{
+    margin: 20px 0 20px 0;
+    text-align: center;
+}
+
+.cuerpo .subtitulo,.texto{
+    color: var(--color-1);
+}
+.cuerpo div .texto p{
+    margin: 0px;
+    padding: 10px;
+
+    text-align: center;
+}
+
+.texto{
+    font-size: 20px;
+    text-align: center;
+}
+
+.texto2{
+    font-size: 25px;
+    color: var(--color-1);
+}
+.cuerpo .bloque{
+    padding: 40px;
+}
+/*Edición del bloque 1*/
+
+/*Edición del bloque 2*/
+.waveUp{
+    width: 100%;
+    position: relative;
+    top: 8px;
+    padding: 0%;
+}
+
+.cuerpo .bloque2{
+    background-color: var(--color-3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cuerpo .bloque2 .sb2{
+    color: var(--color-1);
+    text-align: center;
+
+}
+
+.cuerpo .bloque2 img{
+    width: 400px;
+    height: 100%;
+    border-radius: 40px;
+    margin: 30px;
+}
+.waveDown{
+    width: 100%;
+    position: relative;
+    bottom: 4px;
+    padding: 0%;
+}
+
+
+
+/*Edicion del bloque 3*/

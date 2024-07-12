@@ -20,7 +20,7 @@ div .perritos .cachorro img:hover{
 }
 
 div .perritos .cachorro{
-/*   border-width: 10px;
+ /*   border-width: 10px;
     border-style: solid; */
     background-color:  var(--color-3);
     border-radius: 10%;

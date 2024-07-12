@@ -1,0 +1,35 @@
+
+  /* top nav bar */
+  .topnav {
+    overflow: hidden;
+    background-color:var(--color-2);
+    color: var(--color-4);
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* topnav links */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: auto center;
+    padding: 14px 16px;
+    text-decoration: none;
+    flex-grow: 1;
+  }
+  
+  /* Cambia el color cuando hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Tres columnas al lado de la otra  */
+  .cuerpo{
+    background-color: var(--color-4);
+  }
+
+
+
